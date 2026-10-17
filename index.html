@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>とうひょうナビ｜入場券なくした・期日前投票・白票・国民審査のやり方がすぐわかる</title>
+<meta name="description" content="選挙のたびに検索される「入場券をなくした」「期日前投票は何時まで」「白票の意味」「国民審査のやり方」「誰に投票すればいい」にまとめて答える投票ガイド。投票用紙の書き方練習・投票プラン・えらぶメモつき。">
+<link rel="canonical" href="https://q2mhzpkfg9-cell.github.io/tohyo-navi/">
+<meta property="og:title" content="とうひょうナビ｜選挙の「？」にまとめて答える投票ガイド">
+<meta property="og:description" content="入場券なくした・期日前投票・白票・国民審査・誰に投票。投票用紙の書き方練習つき。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://q2mhzpkfg9-cell.github.io/tohyo-navi/">
+<meta name="twitter:card" content="summary">
+<style>
+:root{
+  --bg:#f6f4ef; --card:#fff; --ink:#1f2933; --sub:#5b6670; --line:#e3ded3;
+  --main:#1f5fa8; --main-soft:#e6eef8; --accent:#d9480f; --ok:#2b8a3e; --warn:#b35c00;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181c; --card:#1e2329; --ink:#e8ecef; --sub:#9aa5b1; --line:#2f363e;
+    --main:#6aa5ea; --main-soft:#1f2c3b; --accent:#ff8a50; --ok:#69c37e; --warn:#f0a050;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;line-height:1.7;-webkit-text-size-adjust:100%}
+header{padding:20px 16px 8px;max-width:820px;margin:0 auto}
+h1{font-size:1.5rem;margin:0}
+h1 span{color:var(--main)}
+.lead{color:var(--sub);margin:4px 0 0;font-size:.92rem}
+.elec{margin:12px 0 0;padding:10px 14px;background:var(--main-soft);border-radius:12px;font-size:.92rem}
+.elec b{color:var(--main)}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .in{max-width:820px;margin:0 auto;display:flex;gap:4px;padding:8px 12px;overflow-x:auto}
+nav button{flex:0 0 auto;border:0;background:none;color:var(--sub);font:inherit;font-size:.92rem;padding:8px 12px;border-radius:999px;cursor:pointer}
+nav button.on{background:var(--main);color:#fff;font-weight:600}
+main{max-width:820px;margin:0 auto;padding:16px}
+section{display:none}
+section.on{display:block}
+h2{font-size:1.15rem;margin:8px 0 4px}
+.note{color:var(--sub);font-size:.85rem;margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:0 0 14px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+label{display:block;font-size:.85rem;color:var(--sub);margin:10px 0 4px}
+.btn{display:inline-block;border:0;background:var(--main);color:#fff;font:inherit;font-weight:600;padding:10px 16px;border-radius:10px;cursor:pointer}
+.btn.ghost{background:var(--main-soft);color:var(--main)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.row{grid-template-columns:1fr}}
+
+/* キーワード */
+.search{position:relative;margin-bottom:12px}
+.grp{margin:16px 0 6px;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:8px}
+.grp small{font-weight:400;color:var(--sub)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.88rem;padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip:hover{border-color:var(--main)}
+.chip.hot::before{content:"🔥";margin-right:4px}
+.chip.on{background:var(--main);color:#fff;border-color:var(--main)}
+.ans{margin-top:14px;border-left:4px solid var(--main)}
+.ans h3{margin:0 0 6px;font-size:1rem}
+.ans .short{font-size:1.05rem;font-weight:700;color:var(--main);margin:0 0 6px}
+.ans p{margin:6px 0}
+#faqAll details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:8px}
+#faqAll summary{cursor:pointer;font-weight:600}
+#faqAll p{margin:6px 0 0}
+.ans .src{font-size:.8rem;color:var(--sub)}
+
+/* プラン */
+.check{list-style:none;padding:0;margin:0}
+.check li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line)}
+.check li:last-child{border:0}
+.check input{width:20px;height:20px;flex:0 0 auto;margin-top:3px}
+.check li.done span{text-decoration:line-through;color:var(--sub)}
+.timeline{display:flex;flex-direction:column;gap:8px}
+.tl{display:flex;gap:12px;align-items:center}
+.tl .d{flex:0 0 120px;font-weight:700;font-size:.9rem}
+.tl .t{font-size:.92rem}
+.pill{display:inline-block;font-size:.75rem;padding:2px 8px;border-radius:999px;background:var(--main-soft);color:var(--main);font-weight:600}
+.count{font-size:2rem;font-weight:800;color:var(--accent)}
+
+/* 投票用紙 */
+.ballots{display:flex;gap:14px;flex-wrap:wrap}
+.ballot{flex:1 1 200px;background:#fbfaf3;color:#222;border:2px solid #c9c2a8;border-radius:6px;padding:12px;position:relative}
+.ballot.tint1{background:#fdf6ee;border-color:#e0b98a}
+.ballot.tint2{background:#f2f7fb;border-color:#9fbdd6}
+.ballot .bt{font-size:.8rem;font-weight:700;text-align:center;border-bottom:1px solid #bbb;padding-bottom:4px;margin-bottom:8px}
+.ballot .bi{font-size:.75rem;color:#555;margin-bottom:6px}
+.ballot input{background:#fff;color:#222;border:1px dashed #999;font-size:1.1rem;text-align:center;writing-mode:horizontal-tb}
+.judge{margin-top:8px;font-size:.82rem;font-weight:700}
+.judge.ok{color:#2b8a3e}.judge.ng{color:#c92a2a}.judge.mid{color:#b35c00}
+.judges{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:6px;margin-top:4px}
+.judges label{margin:0;display:flex;align-items:center;gap:6px;border:1px solid #ccc;border-radius:6px;padding:6px;color:#222;font-size:.85rem;cursor:pointer;background:#fff}
+.judges .x{width:22px;height:22px;border:1px solid #888;display:grid;place-items:center;font-weight:800;color:#c92a2a}
+
+/* えらぶメモ */
+.issues{display:flex;flex-wrap:wrap;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:center}
+th:first-child,td:first-child{text-align:left}
+.tbl{overflow-x:auto}
+.star{border:0;background:none;font-size:1.05rem;cursor:pointer;padding:0 1px;color:var(--line)}
+.star.on{color:#f59f00}
+.cand{display:flex;gap:8px;margin-bottom:8px}
+.cand input{flex:1}
+.del{border:0;background:none;color:var(--sub);cursor:pointer;font-size:1.1rem}
+.bar{height:8px;background:var(--main-soft);border-radius:4px;overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;background:var(--main)}
+footer{max-width:820px;margin:0 auto;padding:16px 16px 40px;color:var(--sub);font-size:.8rem}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>とうひょう<span>ナビ</span></h1>
+  <p class="lead">選挙のたびに検索される「？」に、まとめて答えるページ。特定の政党・候補者はおすすめしません。</p>
+  <div class="elec" id="elecBox"></div>
+</header>
+
+<nav><div class="in">
+  <button data-tab="q" class="on">🔎 みんなの「？」</button>
+  <button data-tab="plan">📅 わたしの投票プラン</button>
+  <button data-tab="write">✍️ 書き方れんしゅう</button>
+  <button data-tab="memo">🧭 えらぶメモ</button>
+</div></nav>
+
+<main>
+
+<!-- ① キーワード -->
+<section id="q" class="on">
+  <h2>選挙のたびによく検索されること</h2>
+  <p class="note">気になる言葉をタップすると、ひとことで答えます。🔥は投票日前に特に増える言葉です。</p>
+  <div class="search"><input id="kw" type="search" placeholder="例：入場券 なくした／何時まで／白票"></div>
+  <div id="chipArea"></div>
+  <div id="ansArea"></div>
+  <h2 style="margin-top:28px">よくある質問の一覧</h2>
+  <div id="faqAll"></div>
+</section>
+
+<!-- ② プラン -->
+<section id="plan">
+  <h2>わたしの投票プラン</h2>
+  <p class="note">いつ・どこで行くかを決めておくと、行き忘れが減ります。入力はこの端末の中だけに保存されます。</p>
+  <div class="card">
+    <div class="row">
+      <div><label>公示・告示日</label><input type="date" id="pKokuji"></div>
+      <div><label>投票日</label><input type="date" id="pVote"></div>
+    </div>
+    <label>いつ行く？</label>
+    <select id="pWhen">
+      <option value="day">投票日当日に行く</option>
+      <option value="early">期日前投票に行く</option>
+      <option value="absent">いま住民票の場所にいない（不在者投票）</option>
+    </select>
+    <div class="row">
+      <div><label>行く日</label><input type="date" id="pDate"></div>
+      <div><label>時間のめやす</label><input type="time" id="pTime" value="10:00"></div>
+    </div>
+    <label>投票所（入場券に書いてあります）</label>
+    <input id="pPlace" placeholder="例：〇〇小学校 体育館">
+  </div>
+
+  <div class="card" id="planOut"></div>
+
+  <div class="card">
+    <h3 style="margin:0 0 6px;font-size:1rem">持ち物・やることチェック</h3>
+    <ul class="check" id="checkList"></ul>
+  </div>
+  <button class="btn" id="icsBtn">📆 カレンダーに入れる（.ics）</button>
+</section>
+
+<!-- ③ 書き方 -->
+<section id="write">
+  <h2>投票用紙の書き方れんしゅう</h2>
+  <p class="note">「何を書けばいいの？」「これって無効？」を、本番前にためせます。実在の候補者名でなくてOK。</p>
+  <div class="card">
+    <label>選挙の種類</label>
+    <select id="wType">
+      <option value="shu">衆議院議員選挙（＋最高裁判所 国民審査）</option>
+      <option value="san">参議院議員選挙</option>
+      <option value="local">知事・市長・議員などの地方選挙</option>
+    </select>
+  </div>
+  <div class="ballots" id="ballots"></div>
+  <div class="card" style="margin-top:14px">
+    <h3 style="margin:0 0 6px;font-size:1rem">迷いやすいポイント</h3>
+    <ul style="margin:0;padding-left:1.2em" id="wTips"></ul>
+  </div>
+</section>
+
+<!-- ④ えらぶメモ -->
+<section id="memo">
+  <h2>えらぶメモ</h2>
+  <p class="note">「誰に入れればいいかわからない」ときの整理用。選挙公報や候補者の発信を見ながら、自分の物差しで★をつけます。点数はあなたのメモで、正解ではありません。</p>
+  <div class="card">
+    <h3 style="margin:0 0 6px;font-size:1rem">① 自分が大事にしたいテーマ（3つまでがおすすめ）</h3>
+    <div class="issues" id="issues"></div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <input id="issueAdd" placeholder="ほかのテーマを追加">
+      <button class="btn ghost" id="issueAddBtn">追加</button>
+    </div>
+  </div>
+  <div class="card">
+    <h3 style="margin:0 0 6px;font-size:1rem">② 候補者・政党を書き出す</h3>
+    <div id="cands"></div>
+    <button class="btn ghost" id="candAdd">＋ 追加</button>
+  </div>
+  <div class="card">
+    <h3 style="margin:0 0 6px;font-size:1rem">③ テーマごとに「自分の考えに近いか」★をつける</h3>
+    <div class="tbl" id="matrix"></div>
+  </div>
+  <div class="card" id="memoSum"></div>
+  <p class="note">情報のさがし方：お住まいの選挙管理委員会のサイトに「選挙公報」が載ります。新聞社・NHKの候補者アンケートや、複数のボートマッチを見比べるのもおすすめです。</p>
+</section>
+
+</main>
+
+<footer>
+  一般的なしくみの説明です。投票時間・期日前投票所・持ち物の細かい扱いは自治体ごとに違うことがあります。最終的にはお住まいの市区町村の選挙管理委員会の案内を確認してください。
+</footer>
+
+<script>
+/* =====================================================
+   選挙ごとにここだけ書きかえる
+   ===================================================== */
+const ELECTION = {
+  name: "（ここに選挙名）",          // 例：第52回衆議院議員総選挙
+  type: "shu",                       // shu=衆院 / san=参院 / local=地方
+  kokuji: "",                        // 公示・告示日 例："2026-11-03"
+  vote: "",                          // 投票日     例："2026-11-15"
+  hotWords: ["入場券 なくした","期日前投票 何時まで","誰に投票","白票","投票所 どこ"] // 今回の🔥
+};
+
+/* 検索されやすいワードと回答。group＝困りごとの種類 */
+const QA = [
+ // --- 行く前の不安 ---
+ {g:"行く前", k:["入場券 なくした","入場券 忘れた","入場券 届かない"], q:"入場券をなくした・届かない",
+  a:"入場券がなくても投票できます。",
+  d:"投票所の受付で「入場券がない」と伝え、名前・住所・生年月日などで本人確認をします。名簿に載っていれば投票できます。身分証があるとスムーズです。"},
+ {g:"行く前", k:["投票 持ち物","身分証 いる","マイナンバーカード 必要"], q:"持ち物は？",
+  a:"基本は入場券だけ。なくても行けます。",
+  d:"身分証は原則いりませんが、入場券がないときは本人確認がスムーズになります。期日前投票は「宣誓書」の記入が必要で、入場券の裏が宣誓書になっている自治体が多いです。家で書いて持っていくと早いです。"},
+ {g:"行く前", k:["投票所 どこ","投票所 場所","近くの投票所"], q:"投票所はどこ？",
+  a:"入場券に書いてある場所です。",
+  d:"当日の投票所は住所ごとに決まっていて、ほかの投票所では投票できません。入場券が手元にないときは、市区町村の選挙管理委員会のサイトで住所から探せます。期日前投票所は市内のどこでも使えることが多いです。"},
+ {g:"行く前", k:["投票 何時まで","投票時間","何時から"], q:"何時から何時まで？",
+  a:"当日はふつう朝7時〜夜8時。",
+  d:"地域によっては終わりが早まる（繰り上げ）投票所があります。入場券で確認を。期日前投票は多くの場所で8時30分〜20時ですが、商業施設などは時間が短い場合があります。"},
+ {g:"行く前", k:["期日前投票 いつから","期日前投票 何時まで","期日前投票 理由"], q:"期日前投票はいつから？",
+  a:"公示・告示日の翌日から、投票日の前日まで。",
+  d:"「仕事」「用事」「レジャー」など、投票日に行けない見込みがあれば利用できます。宣誓書に理由を選ぶだけで、証明はいりません。"},
+ {g:"行く前", k:["投票 服装","投票 子連れ","子ども 連れて行ける"], q:"服装は？子どもを連れて行ける？",
+  a:"服装は自由。18歳未満の子どもは一緒に入れます。",
+  d:"ただし候補者名や政党名が入ったTシャツ・グッズは避けましょう。子どもに用紙を書かせることはできません。"},
+ {g:"行く前", k:["投票 引っ越し","住民票 移してない","引っ越したばかり"], q:"引っ越した・住民票を移していない",
+  a:"投票できる場所が「前の住所」になることがあります。",
+  d:"新しい住所に移って3か月たっていないと、新住所では投票できないことがあります。その場合、前の市区町村で投票できる場合があります（期限あり）。住民票を移していない学生などは、住民票のある所での投票か「不在者投票」になります。まず選挙管理委員会へ。"},
+ {g:"行く前", k:["不在者投票","単身赴任","実家 投票"], q:"住民票の場所にいない（不在者投票）",
+  a:"滞在先の選挙管理委員会で投票できます。",
+  d:"住民票のある市区町村の選挙管理委員会に、投票用紙を請求します（オンラインで請求できる自治体も）。郵送で届いた用紙を開けずに滞在先の選管へ持っていきます。届くまで日数がかかるので早めに。"},
+ {g:"行く前", k:["18歳 選挙","高校生 選挙","何歳から"], q:"何歳から投票できる？",
+  a:"投票日の翌日までに18歳になる人から。",
+  d:"高校3年生でも、誕生日しだいで投票できます。選挙運動のルール（SNSでの応援など）は年齢で違うので注意。"},
+
+ // --- 選び方 ---
+ {g:"選び方", k:["誰に投票","誰に入れればいい","わからない"], q:"誰に入れればいいかわからない",
+  a:"まず「自分が大事なテーマ」を1〜3つ決める。",
+  d:"子育て・物価・仕事・地元の課題など。そのテーマで各候補の考えを比べると選びやすくなります。このページの「えらぶメモ」で整理できます。"},
+ {g:"選び方", k:["選挙公報","候補者 一覧","政策 比較"], q:"候補者の情報はどこで見る？",
+  a:"「選挙公報」がいちばん基本。",
+  d:"公示・告示後に選挙管理委員会のサイトで公開され、新聞に折り込まれる地域もあります。全員が同じ形で載っているので比べやすいです。"},
+ {g:"選び方", k:["ボートマッチ","相性診断","政党 診断"], q:"ボートマッチって？",
+  a:"質問に答えると考えが近い政党・候補がわかるサービス。",
+  d:"作り手によって質問がちがい、結果もかわります。1つだけで決めず、2つ以上ためして「なぜその結果か」を見るのがおすすめ。"},
+ {g:"選び方", k:["小選挙区 比例 違い","比例代表とは","重複立候補"], q:"小選挙区と比例のちがい",
+  a:"小選挙区＝「人」、比例＝「政党」を選ぶ。",
+  d:"小選挙区は1人だけ当選。比例は政党の得票に応じて議席が配られます。小選挙区で落ちても比例で当選する「復活当選」もあります。"},
+
+ // --- 書き方 ---
+ {g:"書き方", k:["白票","白紙 投票","白票 意味"], q:"白票って意味ある？",
+  a:"無効票として数えられます。",
+  d:"投票率には入りますが、誰の票にもなりません。「どれも選べない」という意思表示にはなりますが、結果には影響しません。"},
+ {g:"書き方", k:["無効票","書き間違えた","名前 間違えた"], q:"書き間違えたら？",
+  a:"係の人に言えば、新しい用紙と交換できることが多いです。",
+  d:"名前の漢字が少し違う、ひらがなで書いた、などは有効になることが多いです。候補者名以外のこと（応援メッセージなど）を書くと無効になることがあります。"},
+ {g:"書き方", k:["国民審査 やり方","国民審査 白紙","裁判官 バツ"], q:"最高裁の国民審査のやり方",
+  a:"やめさせたい裁判官にだけ「×」。それ以外は何も書かない。",
+  d:"〇や✓を書くと無効になります。何も書かないと「信任」と同じ扱いです。衆議院選挙と同じ日に行われます。"},
+ {g:"書き方", k:["比例 何て書く","政党名 略称","参院 比例 書き方"], q:"比例代表には何を書く？",
+  a:"衆院は政党名。参院は政党名か候補者名。",
+  d:"略称でも有効になることが多いです。投票所の記載台に名簿が貼ってあるので、見ながら書けます。"},
+ {g:"書き方", k:["自分のペン","鉛筆 消される","鉛筆 なぜ"], q:"鉛筆だと消される？",
+  a:"心配いりません。自分のペンを使ってもOK。",
+  d:"用紙は特殊な合成紙で、折っても開くので数えやすくなっています。鉛筆は乾かず滲まないために使われています。"},
+ {g:"書き方", k:["投票所 写真","投票 SNS","撮影"], q:"投票所で写真をとっていい？",
+  a:"中での撮影は控えましょう。",
+  d:"ほかの人の投票の秘密を守るため、多くの選挙管理委員会が投票所内の撮影を禁止しています。外で入場券や「投票済証明書」をとるのが無難です。"},
+
+ // --- その後 ---
+ {g:"そのあと", k:["開票速報 何時","当確","いつ決まる"], q:"結果はいつわかる？",
+  a:"夜8時の締め切り直後から速報が出ます。",
+  d:"出口調査をもとに、締め切り直後に「当選確実」が出ることもあります。正式な結果は開票が終わってから。"},
+ {g:"そのあと", k:["投票 行かないと","罰則","行かなくていい"], q:"行かないとどうなる？",
+  a:"罰則はありません。",
+  d:"ただ、投票しない人が多いほど、投票した人の意見で結果が決まります。迷ったら期日前投票で、空いている時間に行くのがラクです。"},
+ {g:"そのあと", k:["投票済証明書","選挙割","投票証明"], q:"投票済証明書って？",
+  a:"投票所で頼むともらえる紙（ない自治体も）。",
+  d:"お店の「選挙割」に使われることがあります。必ずもらえるわけではないので、受付で聞いてみてください。"},
+];
+
+const GROUP_LABEL = {
+  "行く前":"行く前の不安 <small>持ち物・場所・時間</small>",
+  "選び方":"選び方がわからない <small>誰に・どう比べる</small>",
+  "書き方":"用紙の書き方 <small>白票・無効・国民審査</small>",
+  "そのあと":"そのあと <small>結果・行かないと</small>"
+};
+
+/* ---------- 共通 ---------- */
+const $ = s => document.querySelector(s);
+const store = {
+  get(k,d){try{const v=localStorage.getItem("tnavi_"+k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem("tnavi_"+k,JSON.stringify(v))}catch(e){}}
+};
+const fmt = s => { if(!s) return "未設定"; const d=new Date(s+"T00:00"); return `${d.getMonth()+1}月${d.getDate()}日(${"日月火水木金土"[d.getDay()]})`; };
+const addDays = (s,n) => { const d=new Date(s+"T00:00"); d.setDate(d.getDate()+n); const p=x=>String(x).padStart(2,"0"); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`; };
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===b.dataset.tab));
+  store.set("tab",b.dataset.tab);
+});
+const lastTab = store.get("tab","q");
+document.querySelector(`nav button[data-tab="${lastTab}"]`)?.click();
+
+/* 選挙バナー */
+(function(){
+  const box=$("#elecBox");
+  if(!ELECTION.vote){ box.innerHTML="いまの選挙の日程は<b>「わたしの投票プラン」</b>で入力できます。"; return; }
+  const left=Math.ceil((new Date(ELECTION.vote+"T00:00")-new Date(new Date().toDateString()))/864e5);
+  box.innerHTML=`<b>${esc(ELECTION.name)}</b>　投票日 ${fmt(ELECTION.vote)}`+(left>=0?`　あと <b>${left}</b> 日`:"（終了）");
+})();
+
+/* ---------- ① キーワード ---------- */
+function renderChips(filter=""){
+  const f=filter.trim().replace(/\s+/g," ");
+  const hit = qa => !f || f.split(" ").every(w => (qa.q+qa.k.join(" ")+qa.a+qa.d).includes(w));
+  let html="";
+  for(const g of Object.keys(GROUP_LABEL)){
+    const items=QA.filter(x=>x.g===g && hit(x));
+    if(!items.length) continue;
+    html+=`<div class="grp">${GROUP_LABEL[g]}</div><div class="chips">`;
+    items.forEach(x=>{
+      const hot=x.k.some(k=>ELECTION.hotWords.includes(k));
+      html+=`<button class="chip${hot?" hot":""}" data-i="${QA.indexOf(x)}">${esc(x.k[0])}</button>`;
+    });
+    html+="</div>";
+  }
+  $("#chipArea").innerHTML = html || `<p class="note">見つかりませんでした。ことばを短くしてみてください。</p>`;
+  $("#chipArea").querySelectorAll(".chip").forEach(c=>c.onclick=()=>showAns(+c.dataset.i,c));
+  if(f){ const first=QA.findIndex(hit); if(first>=0) showAns(first); } else $("#ansArea").innerHTML="";
+}
+function showAns(i,chip){
+  const x=QA[i];
+  document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",+c.dataset.i===i));
+  $("#ansArea").innerHTML=`<div class="card ans"><h3>${esc(x.q)}</h3><p class="short">${esc(x.a)}</p><p>${esc(x.d)}</p>
+    <p class="src">こんな言葉でも検索されています：${x.k.map(esc).join("／")}</p></div>`;
+  if(chip) $("#ansArea").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+$("#kw").addEventListener("input",e=>renderChips(e.target.value));
+renderChips();
+$("#faqAll").innerHTML=QA.map(x=>`<details><summary>${esc(x.q)}</summary><p><b>${esc(x.a)}</b></p><p>${esc(x.d)}</p></details>`).join("");
+(function(){const ld=document.createElement("script");ld.type="application/ld+json";
+ ld.textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage",
+  mainEntity:QA.map(x=>({"@type":"Question",name:x.q,acceptedAnswer:{"@type":"Answer",text:x.a+x.d}}))});
+ document.head.appendChild(ld);})();
+
+/* ---------- ② プラン ---------- */
+const plan = store.get("plan",{kokuji:ELECTION.kokuji,vote:ELECTION.vote,when:"day",date:ELECTION.vote,time:"10:00",place:"",checks:{}});
+["kokuji","vote","when","date","time","place"].forEach(k=>{
+  const el=$("#p"+k[0].toUpperCase()+k.slice(1)); el.value=plan[k]||"";
+  el.addEventListener("input",()=>{plan[k]=el.value; if(k==="when"&&plan.when==="day"){plan.date=plan.vote;$("#pDate").value=plan.vote;} store.set("plan",plan); renderPlan();});
+});
+const CHECKS = {
+  day:["投票所の場所を入場券で確認","入場券（なくてもOK）","身分証（入場券がないとき安心）","選挙公報を見て、書く名前を決めておく"],
+  early:["期日前投票所の場所と時間を確認","入場券の裏の宣誓書を家で書く","入場券（なくてもOK・宣誓書はその場でも書ける）","選挙公報を見て、書く名前を決めておく"],
+  absent:["住民票のある選管に投票用紙を請求","届いた封筒は開けずに保管","滞在先の選管の場所・時間を確認","身分証を持っていく"]
+};
+function renderPlan(){
+  const p=plan, out=$("#planOut");
+  let html="";
+  if(p.vote){
+    const left=Math.ceil((new Date(p.vote+"T00:00")-new Date(new Date().toDateString()))/864e5);
+    html+=`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <div>投票日まで</div><div class="count">${left>=0?left+" 日":"終了"}</div></div>`;
+    html+=`<div class="timeline" style="margin-top:10px">`;
+    if(p.kokuji) html+=`<div class="tl"><div class="d">${fmt(p.kokuji)}</div><div class="t">公示・告示（選挙公報が出はじめる）</div></div>
+      <div class="tl"><div class="d">${fmt(addDays(p.kokuji,1))}〜</div><div class="t">期日前投票スタート（前日 ${fmt(addDays(p.vote,-1))} まで）</div></div>`;
+    if(p.date) html+=`<div class="tl"><div class="d">${fmt(p.date)} ${esc(p.time||"")}</div><div class="t"><span class="pill">わたしの予定</span> ${esc(p.place||"投票所")}へ</div></div>`;
+    html+=`<div class="tl"><div class="d">${fmt(p.vote)}</div><div class="t">投票日（ふつう7時〜20時）・20時から開票速報</div></div></div>`;
+    if(p.when==="early" && p.date && (p.date>=p.vote || (p.kokuji && p.date<=p.kokuji)))
+      html+=`<p class="judge mid">⚠ 期日前投票は ${p.kokuji?fmt(addDays(p.kokuji,1)):"公示・告示の翌日"}〜${fmt(addDays(p.vote,-1))} の間です。</p>`;
+  } else html="投票日を入れると、日程とカウントダウンが出ます。";
+  out.innerHTML=html;
+  const list=CHECKS[p.when]; p.checks[p.when]=p.checks[p.when]||{};
+  $("#checkList").innerHTML=list.map((t,i)=>`<li class="${p.checks[p.when][i]?"done":""}"><input type="checkbox" data-i="${i}" ${p.checks[p.when][i]?"checked":""}><span>${t}</span></li>`).join("");
+  $("#checkList").querySelectorAll("input").forEach(c=>c.onchange=()=>{p.checks[p.when][c.dataset.i]=c.checked;store.set("plan",p);renderPlan();});
+}
+renderPlan();
+$("#icsBtn").onclick=()=>{
+  if(!plan.date){alert("行く日を入れてください");return;}
+  const [h,m]=(plan.time||"10:00").split(":");
+  const st=plan.date.replace(/-/g,"")+"T"+h+m+"00";
+  const en=plan.date.replace(/-/g,"")+"T"+String((+h+1)%24).padStart(2,"0")+m+"00";
+  const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//tohyo-navi//JA","BEGIN:VEVENT",
+    "UID:"+Date.now()+"@tohyo-navi","DTSTART:"+st,"DTEND:"+en,
+    "SUMMARY:投票に行く"+(plan.place?"（"+plan.place+"）":""),
+    "DESCRIPTION:入場券（なくてもOK）"+(plan.when==="early"?"・宣誓書を書いて持っていく":""),
+    "BEGIN:VALARM","TRIGGER:-PT12H","ACTION:DISPLAY","DESCRIPTION:あしたは投票","END:VALARM",
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
+  a.download="投票の予定.ics"; a.click();
+};
+
+/* ---------- ③ 書き方 ---------- */
+const BALLOTS = {
+  shu:[
+    {t:"小選挙区",i:"候補者の名前を1人書く",kind:"name",c:""},
+    {t:"比例代表",i:"政党の名前を1つ書く",kind:"party",c:"tint1"},
+    {t:"最高裁判所 国民審査",i:"やめさせたい裁判官にだけ ×",kind:"judge",c:"tint2"}],
+  san:[
+    {t:"選挙区",i:"候補者の名前を1人書く",kind:"name",c:""},
+    {t:"比例代表",i:"候補者名 または 政党名を1つ書く",kind:"either",c:"tint1"}],
+  local:[{t:"〇〇選挙",i:"候補者の名前を1人書く",kind:"name",c:""}]
+};
+const TIPS = {
+  shu:["用紙は1枚ずつ順番にわたされます。色がちがうので確認を。","国民審査は〇や✓を書くと無効。何も書かなければ「やめさせなくてよい」と同じ。","記載台に候補者名・政党名の一覧が貼ってあります。"],
+  san:["選挙区と比例で用紙が2枚。比例は個人名でも政党名でもOK。","比例で個人名を書くと、その人の政党の票にもなります。"],
+  local:["同じ日に複数の選挙がある場合、用紙が何枚か配られます。","議員選挙は候補者が多いので、名前をメモしておくと安心。"]
+};
+function judgeText(v,kind){
+  v=v.trim();
+  if(!v) return ["mid","白票 → 無効票として数えられます"];
+  if(/[!！♡♥★☆]|がんばれ|頑張れ|応援|よろしく/.test(v)) return ["ng","名前以外のことが書いてある → 無効になることがあります"];
+  if(/[、,・\/／]| と /.test(v) || v.split(/\s+/).length>2) return ["ng","2人（2つ）以上書いている → 無効"];
+  if(kind==="party" && /さん$|様$/.test(v)) return ["mid","比例（衆院）は政党名を書きます"];
+  if(/さん$|様$|先生$/.test(v)) return ["mid","敬称つき → 有効になることが多いけど、名前だけが安心"];
+  return ["ok","OK ✓（書き方としては有効）"];
+}
+function renderBallots(){
+  const t=$("#wType").value;
+  $("#ballots").innerHTML=BALLOTS[t].map((b,bi)=>{
+    if(b.kind==="judge"){
+      return `<div class="ballot ${b.c}"><div class="bt">${b.t}</div><div class="bi">${b.i}</div>
+        <div class="judges">${["Aさん","Bさん","Cさん","Dさん","Eさん","Fさん"].map((n,j)=>`<label><span class="x" data-j="${j}"></span>${n}</label>`).join("")}</div>
+        <div class="judge ok" id="jj">何も書かない → 全員「信任」と同じ扱い</div></div>`;
+    }
+    return `<div class="ballot ${b.c}"><div class="bt">${b.t}</div><div class="bi">${b.i}</div>
+      <input data-b="${bi}" data-k="${b.kind}" placeholder="ここに書く"><div class="judge mid" id="j${bi}">白票 → 無効票として数えられます</div></div>`;
+  }).join("");
+  $("#ballots").querySelectorAll("input").forEach(inp=>inp.oninput=()=>{
+    const [c,m]=judgeText(inp.value,inp.dataset.k); const j=$("#j"+inp.dataset.b); j.className="judge "+c; j.textContent=m;});
+  $("#ballots").querySelectorAll(".judges label").forEach(l=>l.onclick=e=>{
+    e.preventDefault(); const x=l.querySelector(".x"); x.textContent=x.textContent?"":"×";
+    const n=[...document.querySelectorAll(".judges .x")].filter(y=>y.textContent).length;
+    $("#jj").textContent = n?`×が ${n} 人 → その裁判官に「やめさせたい」1票（ほかは信任）`:"何も書かない → 全員「信任」と同じ扱い";
+  });
+  $("#wTips").innerHTML=TIPS[t].map(s=>`<li>${s}</li>`).join("");
+}
+$("#wType").value=ELECTION.type||"shu";
+$("#wType").onchange=renderBallots; renderBallots();
+
+/* ---------- ④ えらぶメモ ---------- */
+const memo = store.get("memo",{
+  issues:["物価・くらし","子育て・教育","仕事・賃金","医療・介護","税金","地元のこと","防災","外交・安全保障","環境・エネルギー"],
+  picked:[], cands:["",""], score:{}
+});
+function renderMemo(){
+  $("#issues").innerHTML=memo.issues.map(s=>`<button class="chip${memo.picked.includes(s)?" on":""}" data-s="${esc(s)}">${esc(s)}</button>`).join("");
+  $("#issues").querySelectorAll(".chip").forEach(c=>c.onclick=()=>{
+    const s=c.dataset.s; memo.picked=memo.picked.includes(s)?memo.picked.filter(x=>x!==s):[...memo.picked,s]; save();});
+  $("#cands").innerHTML=memo.cands.map((n,i)=>`<div class="cand"><input data-i="${i}" value="${esc(n)}" placeholder="候補者・政党 ${i+1}"><button class="del" data-d="${i}" aria-label="削除">✕</button></div>`).join("");
+  $("#cands").querySelectorAll("input").forEach(inp=>inp.onchange=()=>{memo.cands[inp.dataset.i]=inp.value;save();});
+  $("#cands").querySelectorAll(".del").forEach(b=>b.onclick=()=>{memo.cands.splice(+b.dataset.d,1);save();});
+
+  const cs=memo.cands.map((n,i)=>({n:n||`候補${i+1}`,i}));
+  if(!memo.picked.length || !cs.length){ $("#matrix").innerHTML=`<p class="note">①でテーマを選び、②で名前を入れると表ができます。</p>`; $("#memoSum").innerHTML=""; return; }
+  let h=`<table><tr><th>テーマ</th>${cs.map(c=>`<th>${esc(c.n)}</th>`).join("")}</tr>`;
+  memo.picked.forEach(s=>{
+    h+=`<tr><td>${esc(s)}</td>`+cs.map(c=>{
+      const v=memo.score[c.i+"|"+s]||0;
+      return `<td>${[1,2,3].map(k=>`<button class="star${v>=k?" on":""}" data-c="${c.i}" data-s="${esc(s)}" data-v="${k}">★</button>`).join("")}</td>`;}).join("")+"</tr>";
+  });
+  $("#matrix").innerHTML=h+"</table>";
+  $("#matrix").querySelectorAll(".star").forEach(b=>b.onclick=()=>{
+    const key=b.dataset.c+"|"+b.dataset.s; memo.score[key]=(memo.score[key]==+b.dataset.v)?0:+b.dataset.v; save();});
+  const max=memo.picked.length*3;
+  const tot=cs.map(c=>({n:c.n,v:memo.picked.reduce((a,s)=>a+(memo.score[c.i+"|"+s]||0),0)})).sort((a,b)=>b.v-a.v);
+  $("#memoSum").innerHTML=`<h3 style="margin:0 0 8px;font-size:1rem">自分の物差しで見ると</h3>`+
+    tot.map(t=>`<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between"><span>${esc(t.n)}</span><span>${t.v} / ${max}</span></div><div class="bar"><i style="width:${max?t.v/max*100:0}%"></i></div></div>`).join("")+
+    `<p class="note" style="margin:8px 0 0">★は「調べた範囲での自分の感覚」です。人柄・実績・地域とのつながりなど、表に入らないことも大切にしてください。</p>`;
+}
+function save(){store.set("memo",memo);renderMemo();}
+$("#candAdd").onclick=()=>{memo.cands.push("");save();};
+$("#issueAddBtn").onclick=()=>{const v=$("#issueAdd").value.trim(); if(v&&!memo.issues.includes(v)){memo.issues.push(v);memo.picked.push(v);} $("#issueAdd").value=""; save();};
+renderMemo();
+</script>
+</body>
+</html>
