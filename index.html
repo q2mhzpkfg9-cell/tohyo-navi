@@ -103,6 +103,22 @@ th:first-child,td:first-child{text-align:left}
 .cand{display:flex;gap:8px;margin-bottom:8px}
 .cand input{flex:1}
 .del{border:0;background:none;color:var(--sub);cursor:pointer;font-size:1.1rem}
+.sdq{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.sdq .qt{font-weight:700;margin-bottom:2px}
+.sdq .qn{font-size:.82rem;color:var(--sub);margin-bottom:8px}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.scale button{border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.78rem;padding:8px 2px;border-radius:8px;cursor:pointer}
+.scale button.on{background:var(--main);border-color:var(--main);color:#fff;font-weight:700}
+.sdq .imp{border:0;background:none;color:var(--sub);font:inherit;font-size:.82rem;cursor:pointer;padding:6px 0 0}
+.sdq .imp.on{color:#e67700;font-weight:700}
+.draft{background:#fff4e6;color:#8a4b00;border:1px solid #ffc078;border-radius:12px;padding:10px 14px;font-size:.88rem;margin-bottom:12px}
+.res{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.res .nm{flex:0 0 110px;font-weight:700;font-size:.92rem}
+.res .bar{flex:1;margin:0}
+.res .pc{flex:0 0 64px;text-align:right;font-weight:700}
+.mini{font-size:.8rem;color:var(--sub)}
+.pt{width:100%;font-size:.82rem}
+.pt td,.pt th{padding:6px 4px}
 .bar{height:8px;background:var(--main-soft);border-radius:4px;overflow:hidden;margin-top:4px}
 .bar i{display:block;height:100%;background:var(--main)}
 footer{max-width:820px;margin:0 auto;padding:16px 16px 40px;color:var(--sub);font-size:.8rem}
@@ -120,6 +136,7 @@ footer{max-width:820px;margin:0 auto;padding:16px 16px 40px;color:var(--sub);fon
   <button data-tab="q" class="on">🔎 みんなの「？」</button>
   <button data-tab="plan">📅 わたしの投票プラン</button>
   <button data-tab="write">✍️ 書き方れんしゅう</button>
+  <button data-tab="shindan">🧩 政策しんだん</button>
   <button data-tab="memo">🧭 えらぶメモ</button>
 </div></nav>
 
@@ -185,6 +202,22 @@ footer{max-width:820px;margin:0 auto;padding:16px 16px 40px;color:var(--sub);fon
     <h3 style="margin:0 0 6px;font-size:1rem">迷いやすいポイント</h3>
     <ul style="margin:0;padding-left:1.2em" id="wTips"></ul>
   </div>
+</section>
+
+<!-- ⑤ 政策しんだん -->
+<section id="shindan">
+  <h2>政策しんだん</h2>
+  <p class="note">10の政策に「賛成〜反対」で答えると、考えが近い政策・政党がわかります。とくに大事な政策は ★ をつけると2倍で計算します。結果は「入れる先の答え」ではなく、調べるきっかけにしてください。</p>
+  <div id="sdBanner"></div>
+  <div id="sdQs"></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px">
+    <button class="btn" id="sdRun">結果を見る</button>
+    <button class="btn ghost" id="sdReset">答えをリセット</button>
+  </div>
+  <div id="sdOut"></div>
+  <h2 style="margin-top:24px">政党ごとの主な主張</h2>
+  <p class="note">各党の公約・公式サイトをもとにした要約です。並びは届出順ではなく五十音順です。</p>
+  <div id="sdParties"></div>
 </section>
 
 <!-- ④ えらぶメモ -->
@@ -469,6 +502,88 @@ function renderBallots(){
 }
 $("#wType").value=ELECTION.type||"shu";
 $("#wType").onchange=renderBallots; renderBallots();
+
+/* ---------- ⑤ 政策しんだん ----------
+   ▼選挙ごとに書きかえる：各党の公約・公式サイトで確認してから verified を true にする。
+   値： 2=賛成 1=やや賛成 0=どちらとも -1=やや反対 -2=反対 null=明確な主張なし／未確認（計算に入れない）
+------------------------------------------------ */
+const SD_QS = [
+  {id:"kenpo",  t:"憲法改正を進める",                 n:"9条や緊急事態条項など、憲法を変える議論を前に進める"},
+  {id:"genpatsu",t:"原発の再稼働・活用を進める",       n:"エネルギーの安定や脱炭素のために原発を使う"},
+  {id:"shohi",  t:"消費税を下げる（または廃止する）",  n:"かわりに別の財源や国債で手当てする"},
+  {id:"boei",   t:"防衛費を増やす",                   n:"周りの国の動きに備えて防衛力を強める"},
+  {id:"bessei", t:"選択的夫婦別姓を導入する",         n:"結婚しても、希望すれば夫婦が別の名字を名のれる"},
+  {id:"dousei", t:"同性婚を法律で認める",             n:"同性のカップルも法律上の結婚ができる"},
+  {id:"gaikoku",t:"外国人労働者の受け入れを広げる",   n:"人手不足の分野で外国の人に働いてもらう"},
+  {id:"kyoiku", t:"教育の無償化を広げる",             n:"高校・大学・給食などの費用を国が負担する"},
+  {id:"chingin",t:"最低賃金を大きく引き上げる",       n:"国が主導して時給の下限を上げる"},
+  {id:"kenkin", t:"企業・団体献金を禁止する",         n:"政治資金を企業や団体から受け取れなくする"}
+];
+const PARTIES_META = {
+  verified:false,          // ← 公約で確認したら true（false の間は ?draft=1 のときだけ表示）
+  checkedAt:"",            // 確認した日
+  sources:""               // 確認に使った資料（各党マニフェスト・NHK候補者アンケート等）
+};
+/* 下書き：一般に知られている長年の主張だけを入れ、不確かなものは null。公開前に必ず公約で確認 */
+const PARTIES = [
+  {n:"れいわ新選組",   url:"", v:{kenpo:-1,genpatsu:-2,shohi:2,boei:-1,bessei:null,dousei:null,gaikoku:null,kyoiku:2,chingin:2,kenkin:null}},
+  {n:"公明党",        url:"", v:{kenpo:0,genpatsu:0,shohi:null,boei:0,bessei:1,dousei:null,gaikoku:null,kyoiku:2,chingin:1,kenkin:null}},
+  {n:"国民民主党",    url:"", v:{kenpo:1,genpatsu:2,shohi:1,boei:1,bessei:null,dousei:null,gaikoku:null,kyoiku:1,chingin:1,kenkin:null}},
+  {n:"参政党",        url:"", v:{kenpo:null,genpatsu:null,shohi:2,boei:1,bessei:-2,dousei:null,gaikoku:-2,kyoiku:null,chingin:null,kenkin:null}},
+  {n:"自由民主党",    url:"", v:{kenpo:2,genpatsu:2,shohi:null,boei:2,bessei:-1,dousei:-1,gaikoku:null,kyoiku:1,chingin:1,kenkin:-2}},
+  {n:"社会民主党",    url:"", v:{kenpo:-2,genpatsu:-2,shohi:2,boei:-2,bessei:2,dousei:2,gaikoku:null,kyoiku:2,chingin:2,kenkin:2}},
+  {n:"日本維新の会",  url:"", v:{kenpo:2,genpatsu:1,shohi:null,boei:1,bessei:null,dousei:null,gaikoku:null,kyoiku:2,chingin:null,kenkin:2}},
+  {n:"日本共産党",    url:"", v:{kenpo:-2,genpatsu:-2,shohi:2,boei:-2,bessei:2,dousei:2,gaikoku:null,kyoiku:2,chingin:2,kenkin:2}},
+  {n:"立憲民主党",    url:"", v:{kenpo:-1,genpatsu:-1,shohi:null,boei:-1,bessei:2,dousei:2,gaikoku:null,kyoiku:2,chingin:2,kenkin:2}}
+];
+const SD_LABEL=["反対","やや反対","どちらとも","やや賛成","賛成"];
+const sdShowParties = PARTIES_META.verified || new URLSearchParams(location.search).has("draft");
+const sd = store.get("sd",{a:{},imp:{}});
+function renderSd(){
+  $("#sdBanner").innerHTML = PARTIES_META.verified
+    ? `<p class="mini">政党データ：${esc(PARTIES_META.checkedAt)} 確認（${esc(PARTIES_META.sources)}）</p>`
+    : sdShowParties ? `<div class="draft">⚠ 下書きデータ（未確認）を表示中。公約で確認するまで公開しないでください。</div>`
+    : `<div class="draft">政党との比較は、次の選挙で各党の公約が出たら確認して載せます。いまは「あなたの考えの整理」まで使えます。</div>`;
+  $("#sdQs").innerHTML = SD_QS.map((q,i)=>`<div class="sdq"><div class="qt">Q${i+1}. ${q.t}</div><div class="qn">${q.n}</div>
+    <div class="scale">${[-2,-1,0,1,2].map(v=>`<button data-q="${q.id}" data-v="${v}" class="${sd.a[q.id]===v?"on":""}">${SD_LABEL[v+2]}</button>`).join("")}</div>
+    <button class="imp${sd.imp[q.id]?" on":""}" data-imp="${q.id}">${sd.imp[q.id]?"★ とくに大事（2倍）":"☆ とくに大事にする"}</button></div>`).join("");
+  $("#sdQs").querySelectorAll(".scale button").forEach(b=>b.onclick=()=>{const q=b.dataset.q,v=+b.dataset.v; sd.a[q]=sd.a[q]===v?undefined:v; store.set("sd",sd); renderSd();});
+  $("#sdQs").querySelectorAll(".imp").forEach(b=>b.onclick=()=>{sd.imp[b.dataset.imp]=!sd.imp[b.dataset.imp]; store.set("sd",sd); renderSd();});
+  renderParties();
+}
+function sdResult(){
+  const answered=SD_QS.filter(q=>sd.a[q.id]!==undefined);
+  if(answered.length<3){ $("#sdOut").innerHTML=`<div class="card">3問以上答えると結果が出ます（いま ${answered.length} 問）。</div>`; return; }
+  let h=`<div class="card"><h3 style="margin:0 0 8px;font-size:1rem">あなたの考え</h3>`;
+  const yes=answered.filter(q=>sd.a[q.id]>0), no=answered.filter(q=>sd.a[q.id]<0);
+  h+=`<p style="margin:4px 0"><b>進めたい：</b>${yes.map(q=>(sd.imp[q.id]?"★":"")+q.t).join("／")||"なし"}</p>`;
+  h+=`<p style="margin:4px 0"><b>反対：</b>${no.map(q=>(sd.imp[q.id]?"★":"")+q.t).join("／")||"なし"}</p></div>`;
+  if(sdShowParties){
+    const rs=PARTIES.map(p=>{
+      let w=0,sc=0,cnt=0,match=[],diff=[];
+      answered.forEach(q=>{const pv=p.v[q.id]; if(pv===null||pv===undefined) return;
+        const k=sd.imp[q.id]?2:1, u=sd.a[q.id]; w+=k; sc+=k*(1-Math.abs(u-pv)/4); cnt++;
+        if(u*pv>0) match.push(q.t+(u<0?"（どちらも反対）":"")); else if(u*pv<0) diff.push(q.t);});
+      return {p,pc:w?Math.round(sc/w*100):null,cnt,match,diff};
+    }).filter(r=>r.cnt>=3).sort((a,b)=>b.pc-a.pc);
+    h+=`<div class="card"><h3 style="margin:0 0 4px;font-size:1rem">考えが近い政党</h3><p class="mini" style="margin:0 0 12px">比べられた政策の数がちがうので、％は目安です。3問以上比べられた党だけ表示。</p>`;
+    h+=rs.map((r,i)=>`<div class="res"><div class="nm">${esc(r.p.n)}</div><div class="bar"><i style="width:${r.pc}%"></i></div><div class="pc">${r.pc}%</div></div>
+      ${i<3?`<p class="mini" style="margin:-4px 0 12px 0">一致：${r.match.join("、")||"—"}${r.diff.length?`<br>ちがう：${r.diff.join("、")}`:""}（${r.cnt}問で比較）</p>`:""}`).join("");
+    h+=`<p class="mini">この診断は10問だけの単純な比較です。実績・候補者の人柄・地域の課題など、ここに入らないことも大切にしてください。</p></div>`;
+  }
+  $("#sdOut").innerHTML=h;
+  $("#sdOut").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function renderParties(){
+  if(!sdShowParties){ $("#sdParties").innerHTML=`<p class="note">公約が出たら確認して載せます。</p>`; return; }
+  const mark=v=>v===null||v===undefined?`<span class="mini">—</span>`:v>0?"⭕":v<0?"✕":"△";
+  $("#sdParties").innerHTML=`<div class="tbl card"><table class="pt"><tr><th>政策</th>${PARTIES.map(p=>`<th>${esc(p.n.replace(/党$|の会$/,""))}</th>`).join("")}</tr>`+
+    SD_QS.map(q=>`<tr><td>${q.t}</td>${PARTIES.map(p=>`<td>${mark(p.v[q.id])}</td>`).join("")}</tr>`).join("")+
+    `</table><p class="mini">⭕賛成寄り　✕反対寄り　△どちらとも　—明確な主張なし／未確認</p></div>`;
+}
+$("#sdRun").onclick=sdResult;
+$("#sdReset").onclick=()=>{sd.a={};sd.imp={};store.set("sd",sd);$("#sdOut").innerHTML="";renderSd();};
+renderSd();
 
 /* ---------- ④ えらぶメモ ---------- */
 const memo = store.get("memo",{
